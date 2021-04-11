@@ -6,6 +6,12 @@ TagManager:
   tags:
   - bird
   - slingshot
+  - pig
+  - wood
+  - land
+  - data
+  - tool
+  - edge
   layers:
   - Default
   - TransparentFX
@@ -15,8 +21,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - fan
+  - bird
   - 
   - 
   - 

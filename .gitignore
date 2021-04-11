@@ -10,7 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Never ignore Asset meta data
+# Never ignore Asset meta data(要在前面打!）
 /[Aa]ssets/**/*.meta
 /Assets/Assets
 /Assets/03. Asset

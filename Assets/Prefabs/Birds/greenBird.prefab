@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 3301613382783313012}
   - component: {fileID: 3301613382783313015}
   - component: {fileID: 7716846968076019498}
-  - component: {fileID: 188164818291598810}
   - component: {fileID: 745267221386505541}
   - component: {fileID: -7260256097935744602}
   - component: {fileID: 2714434409604198387}
   - component: {fileID: 5765419332326802069}
   - component: {fileID: 5018217472428472599}
-  m_Layer: 0
+  - component: {fileID: -2380016702157011676}
+  m_Layer: 9
   m_Name: greenBird
   m_TagString: bird
   m_Icon: {fileID: 0}
@@ -122,29 +122,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 5
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9df39bda2ae23eb4e80b7786af1fa639, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &188164818291598810
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3301613382783313014}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: -0.01}
-  m_Size: {x: 0.35000002, y: 0.24}
-  m_Direction: 1
 --- !u!60 &745267221386505541
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -334,3 +318,15 @@ CircleCollider2D:
   m_Offset: {x: 0.02, y: -0.03}
   serializedVersion: 2
   m_Radius: 0.11
+--- !u!114 &-2380016702157011676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301613382783313014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66feb24712150d94f81db406325d5bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
