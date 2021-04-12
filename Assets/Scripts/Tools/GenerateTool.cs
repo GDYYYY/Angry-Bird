@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GenerateTool : MonoBehaviour
 {
-    //public List<GameObject> tools;
-    //public Transform toolPos;
-    private SlingShotController slingShot;
+    
+   // private SlingShotController slingShot;
 
     public GameObject tool;
     // Start is called before the first frame update
     void Start()
     {
-        slingShot = GameObject.FindWithTag("slingshot").GetComponent<SlingShotController>();
+        //slingShot = GameObject.Find("SlingShot").GetComponent<SlingShotController>();
     }
 
     // Update is called once per frame
@@ -23,11 +22,11 @@ public class GenerateTool : MonoBehaviour
 
     public void InitializeTool()
     {
-        if (slingShot.getState() < 2)
-        {
+       // if (slingShot.getState() < 2)
+       // {
             tool =  Instantiate(tool, new Vector3(0,0,0), Quaternion.identity);
             //tool.transform.SetParent(toolPos);
             gameObject.SetActive(false);
-        }
+       // }
     }
 }

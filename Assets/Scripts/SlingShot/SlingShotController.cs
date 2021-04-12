@@ -8,15 +8,19 @@ public class SlingShotController : MonoBehaviour
     public LineRenderer rightLineRender, leftLineRender;
     public Transform rightSlingShot, leftSlingShot;
     public Transform birdPos;
-    public List<GameObject> birds;
+    public int strength;
     private GameObject lastButton;
     private GameObject bird;
     private Rigidbody2D rb;
     private Vector3 middlePoint;
-    private const int IDLE = 0, PREPARED=1,PULLING = 2, RELEASE = 3,FLYING=4;
+    private const int IDLE = 0, PREPARED=1,PULLING = 2, RELEASE = 3;//,FLYING=4;
     private int slingShotState=IDLE;//0 for idle,1 for loading,2 for pulling,3 for release
     private AudioSource sounds;
-    
+    public ParadolaRender paradola;
+ 
+    public float maxLength;
+
+    private CameraFollow camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +34,7 @@ public class SlingShotController : MonoBehaviour
         slingShotState = IDLE;
 
         sounds = gameObject.GetComponent<AudioSource>();
+        camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
 
     // Update is called once per frame
@@ -44,12 +49,12 @@ public class SlingShotController : MonoBehaviour
             case PULLING:
                 displayLineRenders();
                 bird.GetComponent<SpringJoint2D>().enabled = false;
-                bird.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-                // displayParabola();
+                rb.bodyType = RigidbodyType2D.Kinematic;
                 break;
             case RELEASE:
                 //bird.GetComponent<SpringJoint2D>().enabled = true;
-                bird.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                paradola.GetComponent<LineRenderer>().enabled = false;
+                rb.bodyType = RigidbodyType2D.Dynamic;
                 leftLineRender.enabled = false;
                 rightLineRender.enabled = false;
                 birdFly();
@@ -64,33 +69,23 @@ public class SlingShotController : MonoBehaviour
         bird.GetComponent<SpringJoint2D>().enabled = false;
         //this.GetComponent<PolygonCollider2D>().enabled = false;
         bird.GetComponent<TrailRenderer>().enabled = true;
-        rb = bird.GetComponent<Rigidbody2D>();
-        Vector3 force = (middlePoint - bird.transform.position)*600;
-        //force.y += rb.mass * 100;
-        rb.AddForce(force);
+     
+        rb.velocity = distance() * strength;
         rb.freezeRotation = false;
-        slingShotState = FLYING;
+        slingShotState = IDLE; // FLYING;
     }
-    public void InitializeBird(int index)
+    public void InitializeBird(GameObject newBird)
     {
-        if (slingShotState == IDLE)
+        if (slingShotState == PREPARED)
         {
             Destroy(bird);
-            Debug.Log("aaa");
-            bird = Instantiate(birds[index], birdPos.position, Quaternion.identity);
-            bird.GetComponent<SpringJoint2D>().connectedBody = rightSlingShot.GetComponent<Rigidbody2D>();
-            //bird.GetComponent<SpringJoint2D>().enabled=false;
-            bird.transform.SetParent(this.gameObject.transform);
-        }
-        else if(slingShotState==PREPARED)
-        {
-            Destroy(bird);
-            //bird = null;
-            bird = Instantiate(birds[index], birdPos.position, Quaternion.identity);
-            bird.GetComponent<SpringJoint2D>().connectedBody = rightSlingShot.GetComponent<Rigidbody2D>();
-            //bird.GetComponent<SpringJoint2D>().enabled = false;
-            bird.transform.SetParent(this.gameObject.transform);
-        }
+        }      
+        bird = Instantiate(newBird, birdPos.position, Quaternion.identity);
+        bird.GetComponent<SpringJoint2D>().connectedBody = rightSlingShot.GetComponent<Rigidbody2D>();
+        //bird.GetComponent<SpringJoint2D>().enabled = false;
+        bird.transform.SetParent(this.gameObject.transform);
+        rb = bird.GetComponent<Rigidbody2D>();
+        camera.bird = bird;
     }
 
     public void controlButton(GameObject cur)
@@ -123,7 +118,14 @@ public class SlingShotController : MonoBehaviour
     {
         slingShotState = s;
         if (s == RELEASE)
+        {
             playSound();
+            //CancelInvoke();
+        }
+        if (s == PULLING)
+        {
+            //InvokeRepeating("ss", 0, 200f);
+        }
         //Debug.Log(s+":state");
     }
     public int getState()
@@ -131,9 +133,14 @@ public class SlingShotController : MonoBehaviour
         return slingShotState;
     }
 
-    public float distance()
+    public Vector3 distance()
     {
-        return (middlePoint - bird.transform.position).magnitude;
+        return (middlePoint - bird.transform.position);
+    }
+
+    public Vector3 getMiddle()
+    {
+        return middlePoint;
     }
 
     void playSound()

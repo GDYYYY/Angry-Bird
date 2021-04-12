@@ -11,7 +11,7 @@ public class DataSaver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.DontDestroyOnLoad(gameObject);
+       // GameObject.DontDestroyOnLoad(gameObject);
         //curLevel = 1;
     }
 
@@ -25,8 +25,10 @@ public class DataSaver : MonoBehaviour
         if (instance != null)
         {
             Destroy(gameObject);
+            return;
         }
 
         instance = this;
+        GameObject.DontDestroyOnLoad(gameObject);
     }
 }

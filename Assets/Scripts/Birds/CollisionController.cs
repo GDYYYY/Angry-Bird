@@ -26,7 +26,7 @@ public class CollisionController : MonoBehaviour
         {
             if (rb.velocity.magnitude == 0)
             {
-                slingShot.setState(0);
+                //slingShot.setState(0);
                 Destroy(gameObject,t);
             }
 
@@ -39,14 +39,6 @@ public class CollisionController : MonoBehaviour
         else t = 0.3f;
         birdStop();
         willStop = true;
-        switch (other.transform.tag)
-        {
-            case "wood":
-                
-                break;
-            case "pig":
-                break;
-        }
     }
     
     void birdStop()

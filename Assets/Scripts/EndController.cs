@@ -15,6 +15,7 @@ public class EndController : MonoBehaviour
         if (data.isWin)
         {
             TitleText.text = "You Win!";
+            GameObject.Find("band").SetActive(true);
             GameObject.Find("next").SetActive(true);
             GameObject.Find("retry").SetActive(false);
 

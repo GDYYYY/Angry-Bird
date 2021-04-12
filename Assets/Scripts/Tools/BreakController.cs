@@ -41,6 +41,10 @@ public class BreakController : MonoBehaviour
             //Debug.Log("mass:"+rb.mass+" v:"+v);
             //Debug.Log("fff:" + force + " cur:" + curForce);
         }
+        else if (collision.collider.tag == "edge")
+        {
+            ItemDestory();return;
+        }
         else
         {
             Rigidbody2D other = collision.collider.GetComponent<Rigidbody2D>();

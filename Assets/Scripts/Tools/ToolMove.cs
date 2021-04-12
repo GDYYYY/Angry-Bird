@@ -7,11 +7,18 @@ public class ToolMove : MonoBehaviour
     private bool isMouseDown;
     private Vector3 offset;
     private SlingShotController slingShot;
-    
+    private Transform edge;
+    public Transform checkPoint;
+    private float size;
+
     // Start is called before the first frame update
     void Start()
     {
-        slingShot = GameObject.FindWithTag("slingshot").GetComponent<SlingShotController>();
+        slingShot = GameObject.Find("SlingShot").GetComponent<SlingShotController>();
+        size = checkPoint.position.x - transform.position.x;
+        //checkPoint = GetComponentInChildren<Transform>();
+        edge = GameObject.Find("ToolLine").transform;
+        //safe = true;
     }
 
     // Update is called once per frame
@@ -45,6 +52,8 @@ public class ToolMove : MonoBehaviour
     {
         offset = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset.z = 0;
-        transform.position = offset;
+        if (offset.x+size < edge.position.x)
+            transform.position = offset;
     }
+
 }

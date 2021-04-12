@@ -774,6 +774,7 @@ Transform:
   - {fileID: 1625298384}
   - {fileID: 800255867}
   - {fileID: 747174439}
+  - {fileID: 1662950712355608755}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -843,10 +844,9 @@ MonoBehaviour:
   rightSlingShot: {fileID: 858035431508413589}
   leftSlingShot: {fileID: 858035432318507342}
   birdPos: {fileID: 747174439}
-  birds:
-  - {fileID: 545806905693088991, guid: 2151a06f852ec5646959e4b431bd7f01, type: 3}
-  - {fileID: 2489556039594276409, guid: 7ada23562aeb6a7439dcb00b537e8050, type: 3}
-  - {fileID: 3301613382783313014, guid: 6e4af5af95f8ae44aaecf6ff41f2bdc6, type: 3}
+  strength: 10
+  paradola: {fileID: 8637667010801727049}
+  maxLength: 1.5
 --- !u!82 &-5396275365684992759
 AudioSource:
   m_ObjectHideFlags: 0
@@ -943,3 +943,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &9193292748332229063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662950712355608755}
+  - component: {fileID: 8637667010801727049}
+  m_Layer: 0
+  m_Name: ParadolaRender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1662950712355608755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193292748332229063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8376086703060196157}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8637667010801727049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193292748332229063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60398d011a2005f4186fbb85feda032c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
