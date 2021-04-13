@@ -20,7 +20,7 @@ public class SlingShotController : MonoBehaviour
  
     public float maxLength;
 
-    private CameraFollow camera;
+    private CameraFollow cameraFollow;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,7 @@ public class SlingShotController : MonoBehaviour
         slingShotState = IDLE;
 
         sounds = gameObject.GetComponent<AudioSource>();
-        camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+        cameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
 
     // Update is called once per frame
@@ -85,7 +85,7 @@ public class SlingShotController : MonoBehaviour
         //bird.GetComponent<SpringJoint2D>().enabled = false;
         bird.transform.SetParent(this.gameObject.transform);
         rb = bird.GetComponent<Rigidbody2D>();
-        camera.bird = bird;
+        cameraFollow.bird = bird;
     }
 
     public void controlButton(GameObject cur)

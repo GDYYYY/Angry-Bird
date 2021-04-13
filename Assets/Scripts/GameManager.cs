@@ -33,11 +33,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void CheckEnd()
+   public void CheckEnd()
     {
+        Debug.Log("aaaaaaa");
         if (GameObject.FindGameObjectsWithTag("pig").Length == 0)
         {
             Invoke("UserWin", 2.0f);
+            //UserWin();
             return;
         }
 
@@ -47,6 +49,14 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log(GameObject.FindGameObjectsWithTag("bird")[0].transform.position);
 
+    }
+
+    public void checkWin()
+    {
+        if (GameObject.FindGameObjectsWithTag("pig").Length == 0)
+        {
+            UserWin();
+        }
     }
     private void Awake()
     {
