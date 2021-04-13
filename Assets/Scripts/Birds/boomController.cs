@@ -29,7 +29,7 @@ public class boomController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.tag == "edge") t = 0;
-        else t = 0.3f;
+        else t = 1f;
         willStop = true;
     }
 }

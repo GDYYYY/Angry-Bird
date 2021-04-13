@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int birdScore;
     public int curLevel;
     private SceneTrans sceneTrans;
-
+    private int maxScore;
     private DataSaver data;
    // public GameObject LevelChoicePanel;
 
@@ -23,13 +24,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         totalScore = 0;
+        maxScore = 0;
         data = GameObject.FindWithTag("data").GetComponent<DataSaver>();
+        GameObject[] woods = GameObject.FindGameObjectsWithTag("wood");//.GetComponent<BreakController>().maxScore;
+        int l = woods.Length;
+        for (int i = 0; i < l; i++)
+        {
+            maxScore += woods[i].GetComponent<BreakController>().maxScore;
+        }
+        maxScore += (GameObject.FindGameObjectsWithTag("pig").Length) * GameObject.FindWithTag("pig").GetComponent<BreakController>().maxScore;
+        maxScore += (GameObject.FindGameObjectsWithTag("bird").Length - 1) * birdScore;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckEnd();
+        //CheckEnd();
 
     }
 
@@ -38,13 +48,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("aaaaaaa");
         if (GameObject.FindGameObjectsWithTag("pig").Length == 0)
         {
-            Invoke("UserWin", 2.0f);
-            //UserWin();
+            //Invoke("UserWin", 2.0f);
+            UserWin();
             return;
         }
-
-        if (GameObject.FindGameObjectsWithTag("bird").Length == 0)
+        Debug.Log(GameObject.FindWithTag("bird").transform.position);
+        if (GameObject.FindGameObjectsWithTag("bird").Length <= 1)
         {
+            Debug.Log("sssaaa");
             UserLose();return;
         }
         //Debug.Log(GameObject.FindGameObjectsWithTag("bird")[0].transform.position);
@@ -75,6 +86,7 @@ public class GameManager : MonoBehaviour
 
    public void addScore(int add)
     {
+        Debug.Log("add"+add);
         totalScore += add;
         userScore.text = totalScore.ToString("000");
 
@@ -82,10 +94,12 @@ public class GameManager : MonoBehaviour
 
     void UserWin()
     {
-       addScore(GameObject.FindGameObjectsWithTag("bird").Length*birdScore);
+       addScore((GameObject.FindGameObjectsWithTag("bird").Length-1)*birdScore);
        data.score = totalScore;
        data.isWin = true;
-       SceneManager.LoadScene("End");
+       data.rank = (int)Math.Ceiling((double)totalScore * 3 / maxScore);
+       Debug.Log("max"+maxScore);
+        SceneManager.LoadScene("End");
     }
 
     void UserLose()
@@ -93,5 +107,11 @@ public class GameManager : MonoBehaviour
         data.score = totalScore;
         data.isWin = false;
         SceneManager.LoadScene("End");
+    }
+
+   public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 }

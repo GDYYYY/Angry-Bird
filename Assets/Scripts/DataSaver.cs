@@ -8,6 +8,8 @@ public class DataSaver : MonoBehaviour
     public int score;
     public bool isWin;
     public int curLevel;
+
+    public int rank;
     // Start is called before the first frame update
     void Start()
     {

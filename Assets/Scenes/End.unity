@@ -407,7 +407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -100}
+  m_AnchoredPosition: {x: -300, y: -200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028730759
@@ -640,6 +640,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userScore: {fileID: 1801768204}
   TitleText: {fileID: 1883795957}
+  ranks:
+  - {fileID: 3146842496469007435, guid: b32cdee75ad22ca4091c598f985e536a, type: 3}
+  - {fileID: 8605505923388289720, guid: d4cc534e6cadbc64d92f965b2f5a46e2, type: 3}
+  - {fileID: 251701767128274996, guid: d8eb2eb4d57a24145b5647dbfa8ef9eb, type: 3}
 --- !u!1 &1660944173
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -100}
+  m_AnchoredPosition: {x: 300, y: -200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1800594374
@@ -974,8 +978,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelChoicePanel: {fileID: 0}
-  dataSave: {fileID: 8043170468041212336, guid: 977c80ad97fdc5049ba813e1b49f639c,
-    type: 3}
 --- !u!1 &1868313555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -100}
+  m_AnchoredPosition: {x: 300, y: -200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2004031241

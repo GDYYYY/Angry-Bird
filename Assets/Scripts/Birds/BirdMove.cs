@@ -97,7 +97,7 @@ public class BirdMove : MonoBehaviour
             transform.position = offset;
             lastPos = offset;
             paradola.displayParadola(slingShot.distance(),slingShot.strength,offset);
-            Debug.Log(lastPos+" "+offset);
+           // Debug.Log(lastPos+" "+offset);
         }
 
     }

@@ -7,7 +7,7 @@ public class BirdController : MonoBehaviour
     private SlingShotController slingShot;
     private GameObject bird;
     private Rigidbody2D rb;
-    private const int IDLE = 0, PREPARED = 1, PULLING = 2, RELEASE = 3;
+    private const int IDLE = 0, PREPARED = 1, PULLING = 2, RELEASE = 3,FLYING=4;
 
     //public GameObject newBird;
     // Start is called before the first frame update
@@ -48,8 +48,8 @@ public class BirdController : MonoBehaviour
         //force.y += rb.mass * 100;
         rb.AddForce(force);
         rb.freezeRotation = false;
-        slingShot.setState(IDLE);
-       // slingShotState = IDLE; // FLYING;
+        slingShot.setState(FLYING); //(IDLE);
+        // slingShotState = IDLE; // FLYING;
     }
     public void InitializeBird(GameObject newBird)
     {

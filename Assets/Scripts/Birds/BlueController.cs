@@ -10,6 +10,7 @@ public class BlueController : MonoBehaviour
     private Rigidbody2D rb;
     private bool beAble;
     private CameraFollow cameraFollow;
+    private float height;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class BlueController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         beAble = true;
         cameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+        height = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)).y;
     }
 
     // Update is called once per frame
@@ -32,17 +34,20 @@ public class BlueController : MonoBehaviour
             Vector3 tmp = rb.velocity;
             tmp.y = tmp.y < 0 ? -tmp.y : tmp.y;
             rb.velocity = tmp;
-            cameraFollow.changeFollow(x);
+           
+            { cameraFollow.changeFollow(x);}
             beAble = false;
         }
 
-        if (!beAble && transform.position.x > Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x)
+        if (!beAble )//&& checkOut())
         {
-            Destroy(gameObject);
+            Destroy(gameObject,0.3f);
         }
     }
-    
-    
-    
+
+    bool checkOut()
+    {
+        return (transform.position.x > Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x||transform.position.y>height);
+    }
     
 }

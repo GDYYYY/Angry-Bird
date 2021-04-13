@@ -14,6 +14,8 @@ public class BreakController : MonoBehaviour
     private float curForce;
     private Vector3 v;
     private GameManager gameManager;
+
+    private bool alive;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class BreakController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindObjectOfType<GameManager>();
         sounds = gameObject.GetComponent<AudioSource>();
+        alive = true;
     }
 
     // Update is called once per frame
@@ -43,7 +46,7 @@ public class BreakController : MonoBehaviour
         }
         else if (collision.collider.tag == "edge")
         {
-            ItemDestory();return;
+            ItemDestroy();return;
         }
         else
         {
@@ -59,10 +62,14 @@ public class BreakController : MonoBehaviour
             state = 0;
         }
         animator.SetInteger("state", state);
-        if (curForce <= 0) Invoke("ItemDestory", 2.0f);
+        if (curForce <= 0&&alive)
+        {
+            alive = false;
+            Invoke("ItemDestroy", 2.0f);
+        }
     }
 
-    void ItemDestory()
+    void ItemDestroy()
     {
        // playSound();
         gameManager.addScore(maxScore);

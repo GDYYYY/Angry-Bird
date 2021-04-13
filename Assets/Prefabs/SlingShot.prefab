@@ -844,7 +844,7 @@ MonoBehaviour:
   rightSlingShot: {fileID: 858035431508413589}
   leftSlingShot: {fileID: 858035432318507342}
   birdPos: {fileID: 747174439}
-  strength: 10
+  strength: 9
   paradola: {fileID: 8637667010801727049}
   maxLength: 1.5
 --- !u!82 &-5396275365684992759

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxForce: 30
-  maxScore: 100
+  maxScore: 200
 --- !u!82 &-6875734732797523780
 AudioSource:
   m_ObjectHideFlags: 0

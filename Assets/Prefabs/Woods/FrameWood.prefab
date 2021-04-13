@@ -145,9 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2c9afda94ae83438b4cf9b5fefc036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForce: 10
-  maxScore: 20
-  BreakClip: {fileID: 8300000, guid: 7afbb5e01287df446b1f0d5c2bf78fb9, type: 3}
+  maxForce: 20
+  maxScore: 40
 --- !u!95 &4946518465799737123
 Animator:
   serializedVersion: 3

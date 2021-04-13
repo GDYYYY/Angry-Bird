@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
     private float flyOffset;
    // public Transform birdPos;
     public Transform edge;
+   // public Transform leftEdge;
     private float left;
 
     private float right;
@@ -18,6 +19,8 @@ public class CameraFollow : MonoBehaviour
     private float threshold;
 
     private bool follow;
+
+    private bool followStone;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         
-        if (!bird)
+        if (!bird&&!followStone)
         {
             transform.position = origin;//birdPos.position+offset;
             updateLR();
@@ -44,31 +47,38 @@ public class CameraFollow : MonoBehaviour
 
         if (!followBird)
         {
+            //if (followStone) Debug.Log("s");
             transform.position = origin;
             updateLR();
             follow = false;
+            followStone = false;
+            //followBird=bird;
         }
         if (!follow)
         {
-            followBird = bird;
-            Debug.Log(bird.transform.position);
+           if(bird) followBird = bird;
+           else return;
+           
+           //if(followStone) Debug.Log("ccc"+followBird);
+           // Debug.Log(bird.transform.position);
         }
-        //Vector3 tmp = transform.position;
-        //tmp.x = bird.transform.position.x + offset.x;
 
         if (followBird.transform.position.x > right - threshold)
         {
             follow = true;
+            //if (followStone) Debug.Log("begin:"+followBird.name);
             //flyOffset = transform.position - bird.transform.position;
         }
         if (follow)
         {
-            if(right<edge.position.x)//&&left>leftEdge.position)
+            //Debug.Log("a");
+            if(right<edge.position.x)//&&left>leftEdge.position.x)
             {
+               // Debug.Log("move:"+followBird.name);
                 Vector3 tmp = transform.position;
                 tmp.x = followBird.transform.position.x + flyOffset;
                 transform.position = tmp;
-                Debug.Log(transform.position);
+               // Debug.Log(transform.position);
                 updateLR();
             }
         }
@@ -85,5 +95,7 @@ public class CameraFollow : MonoBehaviour
     public void changeFollow(GameObject boom)
     {
         followBird = boom;
+        followStone = true;
+       // Debug.Log("followBird:"+followBird.name);
     }
 }

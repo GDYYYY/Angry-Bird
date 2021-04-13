@@ -13,7 +13,7 @@ public class SlingShotController : MonoBehaviour
     private GameObject bird;
     private Rigidbody2D rb;
     private Vector3 middlePoint;
-    private const int IDLE = 0, PREPARED=1,PULLING = 2, RELEASE = 3;//,FLYING=4;
+    private const int IDLE = 0, PREPARED=1,PULLING = 2, RELEASE = 3,FLYING=4;
     private int slingShotState=IDLE;//0 for idle,1 for loading,2 for pulling,3 for release
     private AudioSource sounds;
     public ParadolaRender paradola;
@@ -72,14 +72,19 @@ public class SlingShotController : MonoBehaviour
      
         rb.velocity = distance() * strength;
         rb.freezeRotation = false;
-        slingShotState = IDLE; // FLYING;
+        slingShotState =  FLYING;//IDLE; 
     }
     public void InitializeBird(GameObject newBird)
     {
-        if (slingShotState == PREPARED)
+        switch (slingShotState)
         {
-            Destroy(bird);
-        }      
+            case FLYING:
+                return;
+            case PREPARED:
+                Destroy(bird);
+                break;
+        }
+
         bird = Instantiate(newBird, birdPos.position, Quaternion.identity);
         bird.GetComponent<SpringJoint2D>().connectedBody = rightSlingShot.GetComponent<Rigidbody2D>();
         //bird.GetComponent<SpringJoint2D>().enabled = false;

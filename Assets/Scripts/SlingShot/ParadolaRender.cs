@@ -28,7 +28,7 @@ public class ParadolaRender : MonoBehaviour
     {
         if (lastPos == pos) return;
         lastPos = pos;
-        if(distance.magnitude<1) return;
+        //if(distance.magnitude<1) return;
         //Vector3 force = distance * strength;
         //Vector3 v = force * Time.deltaTime;
         //Debug.Log(force+" "+v);
